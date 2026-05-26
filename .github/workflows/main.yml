@@ -44,12 +44,12 @@ jobs:
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v6
       with:
-        version: v1.56.2
+  version: latest
   
   push:
     runs-on: ubuntu-latest
 
-    needs: build
+    needs: [build, code-quality]
 
     steps:
     - name: Checkout repository
@@ -67,8 +67,8 @@ jobs:
     - name: Build and Push action
       uses: docker/build-push-action@v6
       with:
-        context: .
-        file: ./Dockerfile
+        context: ./go-web-app
+        file: ./go-web-app/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
 
