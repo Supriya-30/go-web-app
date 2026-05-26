@@ -1,6 +1,8 @@
 # CICD using GitHub actions
 
 name: CI/CD
+permissions:
+  contents: write
 
 # Exclude the workflow to run on changes to the helm chart
 on:
@@ -79,7 +81,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ git }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Update tag in Helm chart
       run: |
