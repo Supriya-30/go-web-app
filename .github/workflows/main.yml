@@ -35,16 +35,16 @@ jobs:
       run: go test ./...
   
   code-quality:
-    runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 
-    steps:
+  steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v6
       with:
-  version: latest
+        version: latest
   
   push:
     runs-on: ubuntu-latest
